@@ -1,19 +1,26 @@
 "use client";
 
 import Head from 'next/head';
-import { Typography, Toolbar, AppBar } from '@mui/material';
+import { Typography, Toolbar, AppBar, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { useState } from 'react';
 import Overview from './overview/page';
 import Reviews from './review/page';
 import PhotosVideos from './photos_vid/page';
 
-
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [drawerOpen, setDrawerOpen] = useState(false); // Drawer open state
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const drawerWidth = 240;
 
   return (
     <>
@@ -21,51 +28,80 @@ export default function ProfilePage() {
         <title>Profile - TALENTO</title>
       </Head>
       <div className="flex h-screen bg-gray-100">
-        <aside className="w-64 bg-gray-800 text-white">
-          <AppBar position="static" sx={{ backgroundColor: '#333' }}>
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                TALENTO
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <nav className="p-4 space-y-4">
-            <a href="/dashboard/talentdashboard" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-600">
-              <span>Dashboard</span>
-            </a>
-            <a href="/portfolio" className="flex items-center space-x-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-              <span>Portfolio</span>
-            </a>
-            <a href="/messages" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-              <span>Messages</span>
-            </a>
-            <a href="/booking" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-              <span>Booking</span>
-            </a>
-            <a href="/authentication/login" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-              <span>Log Out</span>
-            </a>
-          </nav>
-        </aside>
+        
+        {/* AppBar with Menu Button */}
+        <AppBar position="fixed" sx={{ backgroundColor: '#333', zIndex: 1201 }}>
+          <Toolbar>
+            <IconButton 
+              edge="start" 
+              color="inherit" 
+              aria-label="menu" 
+              onClick={toggleDrawer}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              TALENTO
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-       
-        <main className="flex-1 p-6 bg-white">
-          
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              backgroundColor: '#333',
+              color: 'white'
+            },
+          }}
+          variant="temporary" 
+          open={drawerOpen} 
+          onClose={toggleDrawer} 
+          ModalProps={{
+            keepMounted: true, 
+          }}
+        >
+          <Toolbar />
+          <List>
+            <ListItem button component="a" href="/dashboard/talentdashboard">
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+            <ListItem button component="a" href="/portfolio">
+              <ListItemText primary="Portfolio" />
+            </ListItem>
+            <ListItem button component="a" href="/messages">
+              <ListItemText primary="Messages" />
+            </ListItem>
+            <ListItem button component="a" href="/booking">
+              <ListItemText primary="Booking" />
+            </ListItem>
+            <ListItem button component="a" href="/authentication/login">
+              <ListItemText primary="Log Out" />
+            </ListItem>
+          </List>
+        </Drawer>
+
+        {/* Main Content */}
+        <main className="flex-1 p-6 bg-white" style={{ marginTop: 64 }}>
           <div className="bg-white shadow-md rounded p-4">
             <div className="flex items-center space-x-4">
               <img
-                src="profile.jpg" 
+                src="profile.jpg"
                 className="h-24 w-24 rounded-full object-cover"
               />
               <div>
                 <Typography variant="h4" component="div">
-                  Ian Jeffprox Casul
+                  Karl Matyou Linao
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   Classical Singer
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
-                  Cordova Express Shesh
+                  Batak Lapu-Lapu
                 </Typography>
                 <div className="flex items-center space-x-1 text-yellow-500">
                   <span>⭐ 4.9</span>

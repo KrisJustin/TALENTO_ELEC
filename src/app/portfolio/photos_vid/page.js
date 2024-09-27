@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 export default function PhotosVideos() {
   return (
     <div className="space-y-8">
-      {/* Photo Section */}
+     
       <div>
         <Typography variant="h6" gutterBottom>
           Photo

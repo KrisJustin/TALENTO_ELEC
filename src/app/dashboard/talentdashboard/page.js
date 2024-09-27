@@ -1,47 +1,85 @@
 "use client";
 
+import { useState } from 'react';
 import Head from 'next/head';
-import { Typography, Toolbar, AppBar } from '@mui/material';
+import { Typography, Toolbar, AppBar, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function TalentDashboard() {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [drawerOpen, setDrawerOpen] = useState(false); 
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const drawerWidth = 240;
+
   return (
     <>
       <Head>
-        <title>TALENTO - Talent Dashboard</title>
+        <title>Profile - TALENTO</title>
       </Head>
       <div className="flex h-screen bg-gray-100">
-        {/* Sidebar */}
-        <aside className="w-64 bg-gray-800 text-white">
-          {/* Toolbar for the Sidebar */}
-          <AppBar position="static" sx={{ backgroundColor: '#333' }}>
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                TALENTO
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <div className="p-4">
-            <nav className="space-y-4">
-              <a href="/dashboard/talentdashboard" className="flex items-center space-x-2 p-2 rounded bg-gray-700">
-                <span>Dashboard</span>
-              </a>
-              <a href="/portfolio" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-                <span>Portfolio</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-                <span>Messages</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-                <span>Booking</span>
-              </a>
-              <a href="/authentication/login" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700">
-                <span>Log Out</span>
-              </a>
-            </nav>
-          </div>
-        </aside>
+        <AppBar position="fixed" sx={{ backgroundColor: '#333', zIndex: 1201 }}>
+          <Toolbar>
+            <IconButton 
+              edge="start" 
+              color="inherit" 
+              aria-label="menu" 
+              onClick={toggleDrawer}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              TALENTO
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-        {/* Main Content */}
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              backgroundColor: '#333',
+              color: 'white'
+            },
+          }}
+          variant="temporary" 
+          open={drawerOpen} 
+          onClose={toggleDrawer} 
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          <Toolbar />
+          <List>
+            <ListItem button component="a" href="/dashboard/talentdashboard">
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+            <ListItem button component="a" href="/portfolio">
+              <ListItemText primary="Portfolio" />
+            </ListItem>
+            <ListItem button component="a" href="/messages">
+              <ListItemText primary="Messages" />
+            </ListItem>
+            <ListItem button component="a" href="/booking">
+              <ListItemText primary="Booking" />
+            </ListItem>
+            <ListItem button component="a" href="/authentication/login">
+              <ListItemText primary="Log Out" />
+            </ListItem>
+          </List>
+        </Drawer>
+
         <main className="flex-1 p-6">
           <header className="flex justify-between items-center mb-6">
             <Typography variant="h4" component="h1" className="text-3xl font-bold">
@@ -57,23 +95,25 @@ export default function TalentDashboard() {
             </div>
           </header>
 
-          {/* Section with cards */}
           <section>
             <div className="space-y-6">
-              {/* Card 1 */}
               <div className="bg-white shadow rounded-lg p-4 flex">
                 <div className="w-16 h-16 flex-shrink-0">
-                  <div className="h-full w-full bg-gray-300 rounded-full flex items-center justify-center text-2xl font-bold">K</div>
+                  <img
+                    src="/juswa.jpg"
+                    alt="Ian Jeffprox Casul"
+                    className="h-full w-full rounded-full object-cover"
+                  />
                 </div>
                 <div className="flex-1 ml-4">
                   <Typography variant="h5" component="h2" className="text-xl font-bold">
-                    Karl M.
+                    Ian Jeffprox Casul
                   </Typography>
                   <Typography variant="body2" color="textSecondary" className="text-sm">
                     June 27, 2024
                   </Typography>
                   <Typography variant="body1" className="mt-2 text-gray-700">
-                    Looking for multi-talented performer that can sing and dance for my son birthday.
+                    Looking for multi-talented performer that can sing and dance for my son’s birthday.
                   </Typography>
                   <div className="mt-4 space-y-2">
                     <Typography variant="body2">
@@ -102,7 +142,6 @@ export default function TalentDashboard() {
                 </div>
               </div>
 
-              {/* Card 2 */}
               <div className="bg-white shadow rounded-lg p-4 flex">
                 <div className="w-16 h-16 flex-shrink-0">
                   <div className="h-full w-full bg-gray-300 rounded-full flex items-center justify-center text-2xl font-bold">N</div>

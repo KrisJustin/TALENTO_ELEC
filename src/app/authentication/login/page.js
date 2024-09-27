@@ -32,7 +32,7 @@ export default function Login() {
                 <input type="checkbox" className="mr-2" />
                 Remember me
               </label>
-              <Link href="#" className="text-sm text-indigo-600 hover:underline">
+              <Link href="/authentication/forgotpassword" className="text-sm text-indigo-600 hover:underline">
                 Forgot Password?
               </Link>
             </div>
