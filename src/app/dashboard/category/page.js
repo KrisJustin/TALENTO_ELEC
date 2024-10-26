@@ -7,7 +7,7 @@ export default function CategoryPage() {
   return (
     <>
       {/* Header or AppBar */}
-      <AppBar position="static" sx={{ backgroundColor: '#333' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#2C3E50' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img 
@@ -24,6 +24,8 @@ export default function CategoryPage() {
             <Button color="inherit" href="" sx={{ color: 'white' }}>Category</Button>
             <Button color="inherit" href="/dashboard/aboutus" sx={{ color: 'white' }}>About Us</Button>
             <Button color="inherit" href="/dashboard/clientprofile" sx={{ color: 'white' }}>Profile</Button>
+            <Button color="inherit" href="/booking" sx={{ color: 'white' }}>Book</Button>
+            <Button color="inherit" href="/message" sx={{ color: 'white' }}>Message</Button>
             <Button color="inherit" href="/authentication/login" sx={{ color: 'white' }}>Logout</Button>
           </div>
         </Toolbar>
@@ -31,7 +33,7 @@ export default function CategoryPage() {
 
       {/* Main Content */}
       <Container sx={{ py: 8 }}>
-        <Typography variant="h3" align="center" gutterBottom>
+        <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#34495E' }}>
           Browse By Category
         </Typography>
 
@@ -46,7 +48,7 @@ export default function CategoryPage() {
           ].map((category, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <a href={category.link} style={{ textDecoration: 'none' }}>
-                <Card sx={{ maxWidth: 345, mx: 'auto', textAlign: 'center', boxShadow: 3 }}>
+                <Card sx={{ maxWidth: 345, mx: 'auto', textAlign: 'center', boxShadow: 3, '&:hover': { boxShadow: 6 } }}>
                   <CardMedia
                     component="img"
                     height="140"
@@ -54,7 +56,7 @@ export default function CategoryPage() {
                     alt={category.name}
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold', color: '#34495E' }}>
                       {category.name}
                     </Typography>
                   </CardContent>

@@ -10,14 +10,14 @@ export default function CreatePostPage() {
         <title>Create Post - TALENTO</title>
       </Head>
 
-      {/* Static form submission (no dynamic state handling) */}
-      <form action="/dashboard/clientprofile" method="GET"> {/* Navigate to Profile Page statically */}
+
+      <form action="/dashboard/clientprofile" method="GET"> 
         <Box sx={{ p: 3 }}>
           <Typography variant="h4" gutterBottom>
             Create a New Post
           </Typography>
 
-          {/* User Information (Example Avatar and Name) */}
+          
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
             <Avatar
               sx={{ width: 56, height: 56, mr: 2 }}
@@ -32,7 +32,6 @@ export default function CreatePostPage() {
             </Box>
           </Box>
 
-          {/* Post Form Section */}
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             <TextField
               label="Description"
@@ -75,6 +74,7 @@ export default function CreatePostPage() {
               size="large"
               sx={{ mt: 2 }}
               type="submit" 
+              enable
             >
               Post
             </Button>

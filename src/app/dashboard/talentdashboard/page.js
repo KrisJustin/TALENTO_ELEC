@@ -71,7 +71,7 @@ export default function TalentDashboard() {
             <ListItem button component="a" href="/messages">
               <ListItemText primary="Messages" />
             </ListItem>
-            <ListItem button component="a" href="/booking">
+            <ListItem button component="a" href="">
               <ListItemText primary="Booking" />
             </ListItem>
             <ListItem button component="a" href="/authentication/login">

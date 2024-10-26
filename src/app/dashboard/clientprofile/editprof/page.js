@@ -12,9 +12,12 @@ export default function EditProfilePage() {
       </Head>
 
       <Box sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Edit Profile
-        </Typography>
+        {/* Back Button */}
+        <Link href="/dashboard/clientprofile" >
+          <Button variant="outlined" color="primary">
+            Back
+          </Button>
+        </Link>
 
         <Typography variant="h6" gutterBottom>
           Profile Picture
@@ -28,7 +31,6 @@ export default function EditProfilePage() {
           variant="contained"
           color="primary"
           sx={{ mb: 4 }}
-          enable 
         >
           Upload Profile Picture
         </Button>
