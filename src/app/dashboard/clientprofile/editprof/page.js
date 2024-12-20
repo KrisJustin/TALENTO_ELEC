@@ -1,10 +1,38 @@
 "use client"; 
 
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import { Avatar, Typography, Box, TextField, Button } from '@mui/material';
 import Link from 'next/link'; 
 
 export default function EditProfilePage() {
+  const [profile, setProfile] = useState({
+    name: '',
+    profession: '',
+    address: ''
+  });
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const fetchedData = {
+        name: 'Ian Jeffprox Casul', 
+        profession: 'Maneger',
+        address: 'Cordova Express Shesh'
+      };
+      setProfile(fetchedData);
+    };
+
+    fetchProfileData();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile(prevProfile => ({
+      ...prevProfile,
+      [name]: value
+    }));
+  };
+
   return (
     <>
       <Head>
@@ -12,7 +40,6 @@ export default function EditProfilePage() {
       </Head>
 
       <Box sx={{ p: 3 }}>
-        {/* Back Button */}
         <Link href="/dashboard/clientprofile" >
           <Button variant="outlined" color="primary">
             Back
@@ -42,29 +69,26 @@ export default function EditProfilePage() {
           <TextField
             label="Name"
             variant="outlined"
-            defaultValue=""
+            name="name"
+            value={profile.name}
+            onChange={handleInputChange}
             fullWidth
-            InputProps={{
-              readOnly: false, 
-            }}
           />
           <TextField
             label="Profession"
             variant="outlined"
-            defaultValue=""
+            name="profession"
+            value={profile.profession}
+            onChange={handleInputChange}
             fullWidth
-            InputProps={{
-              readOnly: false, 
-            }}
           />
           <TextField
             label="Address"
             variant="outlined"
-            defaultValue=""
+            name="address"
+            value={profile.address}
+            onChange={handleInputChange}
             fullWidth
-            InputProps={{
-              readOnly: false, 
-            }}
           />
         </Box>
 
